@@ -17,9 +17,11 @@ os:
 before_script:
   # Install Gobo Eiffel
   - export GOBO=$PWD
+  - export MAKEFLAGS=-j2
   - travis_wait 60 bin/install.sh -v -t gcc
   - export PATH=$PATH:$GOBO/bin
   - echo `gec --version`
+
   # Install ISE Eiffel
   - cd $GOBO/..
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export ISE_PLATFORM=linux-x86-64; fi
@@ -27,7 +29,6 @@ before_script:
   - curl -sSL https://www.eiffel.org/setup/install.sh | bash > eiffel.rc
   - source ./eiffel.rc
   - echo `ec -version`
-  - cd $GOBO
 
 env:
   matrix:
@@ -38,4 +39,4 @@ env:
 script:
   # Test
   - cd $GOBO/$TRAVIS_GOBO_TEST_DIR
-  - travis_wait 120 geant test_debug_$TRAVIS_GOBO_EIFFEL
+  - travis_wait 600 geant test_debug_$TRAVIS_GOBO_EIFFEL
