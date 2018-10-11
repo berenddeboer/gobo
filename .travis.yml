@@ -31,10 +31,9 @@ before_script:
   - echo `ec -version`
 
 env:
-  matrix:
-    - TRAVIS_GOBO_TEST_DIR=library TRAVIS_GOBO_EIFFEL=ge
-    - TRAVIS_GOBO_TEST_DIR=tool TRAVIS_GOBO_EIFFEL=ge
-    - TRAVIS_GOBO_TEST_DIR=library TRAVIS_GOBO_EIFFEL=ise
+  - TRAVIS_GOBO_TEST_DIR=library TRAVIS_GOBO_EIFFEL=ge
+  - TRAVIS_GOBO_TEST_DIR=tool TRAVIS_GOBO_EIFFEL=ge
+  - TRAVIS_GOBO_TEST_DIR=library TRAVIS_GOBO_EIFFEL=ise
 
 script:
   # Test
